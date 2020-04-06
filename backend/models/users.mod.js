@@ -1,5 +1,8 @@
-import { Schema, mongo } from "mongoose";
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt-nodejs');
 
+mongoose.Promise = global.Promise;
 
 /*
 Username only has one field: username along with some validations (string, required, unique, 

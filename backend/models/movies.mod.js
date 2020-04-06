@@ -1,18 +1,27 @@
-import { Schema, mongo, Mongoose } from "mongoose";
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-const Schema = mongoose.Schema;
+mongoose.Promise = global.Promise;
+
+const actorSchema = new Schema({
+    actorName:{
+        type: String,
+        required: true
+    },
+    characterName:{
+        type:String,
+        required: true
+    }
+});
 
 const movieSchema = new Schema({
 
-    username:   { type: String, required: true},
     title:      { type: String, required: true},
     year:       { type: Number, required: true},
     genre:      { type: String, required: true},
-    actor1:     { type: String, required: true},
-    actor2:     { type: String, required: true},
-    actor3:     { type: String, required: true},
+    actor:      { type: [actorSchema], required: true}
 }, {
-    timestamps: true,
+   // timestamps: true,
 });
 
 var Movie = mongoose.model('Movie', movieSchema);
